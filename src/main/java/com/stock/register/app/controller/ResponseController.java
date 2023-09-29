@@ -22,7 +22,7 @@ public class ResponseController<T> {
         status.setMessageId(messageId.getMessageId());
         status.setTime(LocalDateTime.now());
 
-        ResponseDto<T> responseDto = new ResponseDto<T>();
+        ResponseDto<T> responseDto = new ResponseDto<>();
         responseDto.setStatus(status);
         responseDto.setResult(object);
         log.info("Flux finished with MessageId: {}",messageId.getMessageId());

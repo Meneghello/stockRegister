@@ -23,23 +23,20 @@ public class ClientController {
         this.createClientUseCase = createClientUseCase;
         this.responseController = responseController;
     }
-
     public ResponseEntity<?> listAll() {
+        log.info("::listAll() -> Starting listing clients");
         return responseController.toResponse(getAllClientUseCase.getAll(), MessageCode.RS000);
 
     }
-
     public ResponseEntity<?> createClient(ClientRequest request) {
-        log.info("Calling persisting flux");
+        log.info("::createClient() -> Starting persisting flux");
         createClientUseCase.saveClient(request);
         return responseController.toResponse(null,MessageCode.RS001);
     }
 
     public ResponseEntity<?>  getClient(String cpf) {
+        log.info("::getClient() -> Start looking for client with CPF: {}", cpf);
         Long validatedCpf = getAllClientUseCase.validateCpf(cpf);
-        responseController.toResponse(getAllClientUseCase.getByCpf(validatedCpf), MessageCode.RS000);
+        return responseController.toResponse(getAllClientUseCase.getByCpf(validatedCpf), MessageCode.RS000);
     }
-//
-//    public void createClient(ClientRequest request) {
-//    }
 }

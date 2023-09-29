@@ -5,10 +5,11 @@ import com.stock.register.app.dto.response.ClientResponse;
 import com.stock.register.infra.db.StockClient;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ClientMapper {
 
     @Mapping(source = "cpf", target = "cpf")
@@ -17,7 +18,7 @@ public interface ClientMapper {
     @Mapping(source = "lastUpdateDate", target = "lastUpdateDate")
     @Mapping(source = "activeRegister", target = "activeRegister")
     @Mapping(source = "clientId", target = "clientId")
-    @Mapping(expression = "java(stockClient.getName() + " " + stockClient.getSecondName())", target = "fullName")
+    @Mapping(expression = "java(stockClient.getName()  + \" \" +  stockClient.getSecondName())", target = "fullName")
     ClientResponse entityToResponse(StockClient stockClient);
 
     @Mapping(source = "name", target = "name")
