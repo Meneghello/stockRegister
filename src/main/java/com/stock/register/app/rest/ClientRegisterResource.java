@@ -16,8 +16,8 @@ public class ClientRegisterResource {
         this.service = service;
     }
 
-    @GetMapping()
-    public ResponseEntity<?> listAllClients(@RequestParam(value = "CPF") String cpf) {
+    @GetMapping
+    public ResponseEntity<?> listAllClients(@RequestParam(value = "CPF", required = false) String cpf) {
         if (cpf!=null){
             return service.getClient(cpf);
         }

@@ -23,4 +23,8 @@ public class ExceptionHandlerController {
     protected ResponseEntity<Object> emptyListHandler(ArrayIndexOutOfBoundsException e) {
         return responseController.toResponse(null, MessageCode.RS003);
     }
+    @ExceptionHandler(NumberFormatException.class)
+    protected ResponseEntity<Object> invalidCpf(NumberFormatException e) {
+        return responseController.toResponse(null, MessageCode.RS004);
+    }
 }

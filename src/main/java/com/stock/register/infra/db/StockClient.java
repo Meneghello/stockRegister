@@ -1,6 +1,10 @@
 package com.stock.register.infra.db;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,22 +26,30 @@ public class StockClient {
     @Id
     @Column(name = "client_cpf")
     private Long cpf;
-    @Id
-    @Column(name = "client_id", nullable = false,columnDefinition = "serial")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "client_id", nullable = false, columnDefinition = "serial")
     private Long clientId;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "secondName")
     private String secondName;
+
     @Column(name = "birthDate")
     private LocalDate birthDate;
-    @CreationTimestamp
+
+    @CreationTimestamp()
     @Column(name = "registration_date")
     private LocalDateTime registrationDate;
+
     @UpdateTimestamp
     @Column(name = "lastUpdate_date")
     private LocalDateTime lastUpdateDate;
+
     @Column(name = "active_register")
     private Boolean activeRegister;
+
+    @Column(name = "wallet_id")
+    private String walletId;
 }
