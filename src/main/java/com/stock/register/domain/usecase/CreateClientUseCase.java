@@ -5,6 +5,7 @@ import com.stock.register.domain.assembler.ClientMapper;
 import com.stock.register.infra.db.StockClient;
 import com.stock.register.infra.repository.ClientRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,7 @@ public class CreateClientUseCase {
         this.mapper = mapper;
     }
 
+    @Transactional
     public void saveClient(ClientRequest request) {
         log.info("Starting persisting");
         StockClient entity = mapper.requestToEntity(request);

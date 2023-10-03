@@ -17,17 +17,14 @@ public class ClientRegisterResource {
     }
 
     @GetMapping()
-    public ResponseEntity<?> listAllClients() {
+    public ResponseEntity<?> listAllClients(@RequestParam(value = "CPF") String cpf) {
+        if (cpf!=null){
+            return service.getClient(cpf);
+        }
         return service.listAll();
     }
-//
-//    @GetMapping(path = "/{cpf}")
-//    private ResponseEntity<> listAllClients(@RequestParam(value = "cpf") String cpf) {
-//        service.getClient(cpf);
-//    }
-//
     @PostMapping
-    private ResponseEntity<?> createClient(@RequestBody @Valid  ClientRequest request) {
+    public ResponseEntity<?> createClient(@RequestBody @Valid  ClientRequest request) {
         return service.createClient(request);
     }
 

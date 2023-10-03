@@ -26,6 +26,7 @@ public enum MessageCode {
         return Stream.of(values()).filter(code -> code.messageId.equals(messageCode)).findFirst().orElseThrow();
     }
     public static MessageCode constructMessageError(MessageCode message, String detail){
+
         message.getMessage().concat(detail);
         return message;
     }

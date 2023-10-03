@@ -22,6 +22,7 @@ public class StockClient {
     @Id
     @Column(name = "client_cpf")
     private Long cpf;
+    @Id
     @Column(name = "client_id", nullable = false,columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clientId;

@@ -1,5 +1,6 @@
 package com.stock.register.app.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class ClientRequest {
     @CPF
     private String cpf;
     @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
 
 }
