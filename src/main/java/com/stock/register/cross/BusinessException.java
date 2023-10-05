@@ -1,7 +1,11 @@
 package com.stock.register.cross;
 
-import lombok.Data;
 
-@Data
-public class BusinessException {
+public class BusinessException extends Exception{
+    public BusinessException(String message) {
+        super(message);
+    }
+    public BusinessException() {
+        super();
+    }
 }

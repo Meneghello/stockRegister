@@ -1,6 +1,7 @@
 package com.stock.register.app.controller;
 
 import com.stock.register.app.dto.request.ClientRequest;
+import com.stock.register.cross.BusinessException;
 import com.stock.register.cross.MessageCode;
 import com.stock.register.domain.usecase.CreateClientUseCase;
 import com.stock.register.domain.usecase.GetClientUseCase;
@@ -28,7 +29,9 @@ public class ClientController {
         return responseController.toResponse(getAllClientUseCase.getAll(), MessageCode.RS000);
 
     }
-    public ResponseEntity<?> createClient(ClientRequest request) {
+    public ResponseEntity<?> createClient(ClientRequest request) throws BusinessException {
+        log.info("::createClient() -> Validating existing client");
+        createClientUseCase.validateUnique(request.getCpf());
         log.info("::createClient() -> Starting persisting flux");
         createClientUseCase.saveClient(request);
         return responseController.toResponse(null,MessageCode.RS001);

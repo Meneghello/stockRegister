@@ -2,7 +2,6 @@ package com.stock.register.cross;
 
 import com.stock.register.app.controller.ResponseController;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -26,5 +25,9 @@ public class ExceptionHandlerController {
     @ExceptionHandler(NumberFormatException.class)
     protected ResponseEntity<Object> invalidCpf(NumberFormatException e) {
         return responseController.toResponse(null, MessageCode.RS004);
+    }
+    @ExceptionHandler(BusinessException.class)
+    protected ResponseEntity<Object> invalidCpf(BusinessException e) {
+        return responseController.toResponse(null, MessageCode.RS005);
     }
 }

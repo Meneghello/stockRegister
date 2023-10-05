@@ -1,10 +1,6 @@
 package com.stock.register.infra.db;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +8,12 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "client")
+@Table(name = "client", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,7 +22,7 @@ public class StockClient {
 
     @Id
     @Column(name = "client_cpf")
-    private Long cpf;
+    private Long clientCpf;
 
     @Column(name = "client_id", nullable = false, columnDefinition = "serial")
     private Long clientId;
@@ -50,6 +47,11 @@ public class StockClient {
     @Column(name = "active_register")
     private Boolean activeRegister;
 
+    @Column(name = "total_account_value")
+    private BigDecimal totalAccountValue;
+
     @Column(name = "wallet_id")
     private String walletId;
+
+
 }

@@ -7,12 +7,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
-import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ClientMapper {
 
-    @Mapping(source = "cpf", target = "cpf")
+    @Mapping(source = "clientCpf", target = "cpf")
     @Mapping(source = "birthDate", target = "birthDate")
     @Mapping(source = "registrationDate", target = "registrationDate")
     @Mapping(source = "lastUpdateDate", target = "lastUpdateDate")
@@ -21,10 +20,14 @@ public interface ClientMapper {
     @Mapping(expression = "java(stockClient.getName()  + \" \" +  stockClient.getSecondName())", target = "fullName")
     ClientResponse entityToResponse(StockClient stockClient);
 
-    @Mapping(source = "name", target = "name")
-    @Mapping(source = "secondName", target = "secondName")
-    @Mapping(source = "cpf", target = "cpf")
-    @Mapping(source = "birthDate", target = "birthDate")
+    @Mapping(source = "request.name", target = "name")
+    @Mapping(source = "request.secondName", target = "secondName")
+    @Mapping(source = "request.cpf", target = "clientCpf")
+    @Mapping(source = "request.birthDate", target = "birthDate")
     @Mapping(constant = "true", target = "activeRegister")
-    StockClient requestToEntity(ClientRequest request);
+    @Mapping(expression = "java(Long.valueOf(sequence))", target = "clientId")
+    @Mapping(expression = "java(java.util.UUID.randomUUID().toString())", target = "walletId")
+    @Mapping(constant = "0.00", target = "totalAccountValue")
+    StockClient requestToEntity(ClientRequest request, String sequence);
+
 }

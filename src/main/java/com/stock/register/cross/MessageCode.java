@@ -12,7 +12,8 @@ public enum MessageCode {
     RS001("SC001", "Client Success Create"),
     RS002("ER001", "Client Not Found for CPF -> "),
     RS003("ER002", "Clients not found, empty list"),
-    RS004("ER003", "Invalid CPF type");
+    RS004("ER003", "Invalid CPF type"),
+    RS005("ER004", "Client already exists");
 
 
     final String messageId;

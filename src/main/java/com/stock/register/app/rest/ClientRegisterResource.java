@@ -2,6 +2,7 @@ package com.stock.register.app.rest;
 
 import com.stock.register.app.controller.ClientController;
 import com.stock.register.app.dto.request.ClientRequest;
+import com.stock.register.cross.BusinessException;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class ClientRegisterResource {
         return service.listAll();
     }
     @PostMapping
-    public ResponseEntity<?> createClient(@RequestBody @Valid  ClientRequest request) {
+    public ResponseEntity<?> createClient(@RequestBody @Valid  ClientRequest request) throws BusinessException {
         return service.createClient(request);
     }
 
